@@ -1,5 +1,7 @@
 <?php
 
+require './Handler/FileSystemManager.php';
+
 use RuntimeException;
 
 class CacheManager {
@@ -13,7 +15,13 @@ class CacheManager {
             self::$instance = new self();
             // Загружаем конфиг
             include('./config.php');
-            // TODO: set handler
+            switch ($handler) {
+                case 'FileSystem':
+                    $handler = new FileSystem($path);
+                    $this->setHandler($handler);
+                    break;
+                // TODO: exeption
+            }
         }
         return self::$instance;
     }
@@ -21,23 +29,23 @@ class CacheManager {
     private function __clone() {}
     private function __construct() {}
 
-    public function setHandler() {
-        // TODO!
+    private function setHandler($handler) {
+        $this->handler = $handler;
     }
 
-    public function getHandler() {
-        // TODO!
+    private function getHandler() {
+        return $this->handler;
     }
 
     public function set($key, $data, $ttl = -1) {
-        // TODO!
+        return $this->getHandler()->set($key, $data, $ttl);
     }
 
     public function get($key) {
-       // TODO!
+        return $this->getHandler()->get($key);
     }
 
     public function del($key) {
-        // TODO!
+       return $this->getHandler()->del($key);
     }
 }
