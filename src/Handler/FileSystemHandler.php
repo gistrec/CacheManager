@@ -1,8 +1,8 @@
 <?php
 
-require './IHandler.php';
+require __DIR__ . '/IHandler.php';
 
-class FileSystemHandler interface IHandler {
+class FileSystemHandler implements IHandler {
 
 	private $path;
 
@@ -18,14 +18,14 @@ class FileSystemHandler interface IHandler {
 		$cacheFile = $this->path . md5($key) . '.cache';
 		$timeFile  = $this->path . md5($key) . '.time';
 
-		if ($ttl = -1) {
-			$ttl = PHP_MAX_INT;
+		if ($ttl == -1) {
+			$ttl = PHP_INT_MAX;
 		}else {
 			$ttl = time() + $ttl;
 		}
 		$data = $this->serialize($data);
 		file_put_contents($this->path . md5($key) . '.cache', $data);
-		file_put_contents($this->path . md5($key) . '.time',  $ttl)
+		file_put_contents($this->path . md5($key) . '.time',  $ttl);
 	}
 
 	public function get($key) {
