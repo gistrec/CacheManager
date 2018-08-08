@@ -6,7 +6,7 @@ interface IHandler {
      * Добавление данных
      * @param string $key
      * @param mixed $data
-     * @param int ttl Время жизни данных
+     * @param int $ttl Время жизни данных
      * @return mixed Возвращает NULL при неудаче, или хранимые данные
      */
 	public function set($key, $data, $ttl = -1);

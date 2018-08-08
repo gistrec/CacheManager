@@ -6,12 +6,16 @@ class FileSystemHandler implements IHandler {
 
 	private $path;
 
-	public function __construct($path) {
+	public function __construct($path, $error_reporting = true) {
 		// Добавляем слеш в конце пути, если его нет
 		if ($path[strlen($path) - 1] != '/') {
 			$path .= '/';
 		}
 		$this->path = $path;
+
+      	if (!is_dir($this->path) && $error_reporting) {
+            throw new RuntimeException('Cache path not found');
+        }
 	}
 
 	public function set($key, $data, $ttl = -1) {

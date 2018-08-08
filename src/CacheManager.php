@@ -15,10 +15,7 @@ class CacheManager {
             include(__DIR__ . '/config.php');
             switch ($handler) {
                 case 'FileSystem':
-                    if (!is_dir($cachePath) && $error_reporting) {
-                        throw new RuntimeException('Cache path not found');
-                    }
-                    $handler = new FileSystemHandler($cachePath);
+                    $handler = new FileSystemHandler($cachePath, $error_reporting);
                     self::setHandler($handler);
                     break;
                 default:
