@@ -2,8 +2,6 @@
 
 require __DIR__. '/Handler/FileSystemHandler.php';
 
-//use RuntimeException;
-
 class CacheManager {
 
     private static $instance = null;
@@ -17,10 +15,17 @@ class CacheManager {
             include(__DIR__ . '/config.php');
             switch ($handler) {
                 case 'FileSystem':
+                    if (!is_dir($cachePath) && $error_reporting) {
+                        throw new RuntimeException('Cache path not found');
+                    }
                     $handler = new FileSystemHandler($cachePath);
                     self::setHandler($handler);
                     break;
-                // TODO: exeption
+                default:
+                    if ($error_reporting) {
+                        throw new RuntimeException('Handler not found');
+                    }
+                    break;
             }
         }
         return self::$instance;

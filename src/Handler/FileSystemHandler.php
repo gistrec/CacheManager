@@ -7,7 +7,7 @@ class FileSystemHandler implements IHandler {
 	private $path;
 
 	public function __construct($path) {
-		// Добовляем слеш в конце пути, если его нет
+		// Добавляем слеш в конце пути, если его нет
 		if ($path[strlen($path) - 1] != '/') {
 			$path .= '/';
 		}
@@ -24,8 +24,8 @@ class FileSystemHandler implements IHandler {
 			$ttl = time() + $ttl;
 		}
 		$data = $this->serialize($data);
-		file_put_contents($this->path . md5($key) . '.cache', $data);
-		file_put_contents($this->path . md5($key) . '.time',  $ttl);
+		file_put_contents($cacheFile, $data);
+		file_put_contents($timeFile,  $ttl);
 	}
 
 	public function get($key) {
