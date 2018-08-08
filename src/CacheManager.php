@@ -23,6 +23,10 @@ class CacheManager {
                     $handler = new RedisHandler($redis_ip, $redis_port, $error_reporting);
                     self::setHandler($handler);
                     break;
+                case 'Memcached':
+                    $handler = new MemcachedHandler($memcached_ip, $memcached_port, $error_reporting);
+                    self::setHandler($handler);
+                    break;
                 default:
                     if ($error_reporting) {
                         throw new RuntimeException('Handler not found');
