@@ -1,6 +1,7 @@
 <?php
 
 require __DIR__. '/Handler/FileSystemHandler.php';
+require __DIR__. '/Handler/RedisHandler.php';
 
 class CacheManager {
 
@@ -16,6 +17,10 @@ class CacheManager {
             switch ($handler) {
                 case 'FileSystem':
                     $handler = new FileSystemHandler($cachePath, $error_reporting);
+                    self::setHandler($handler);
+                    break;
+                case 'Redis':
+                    $handler = new RedisHandler($redis_ip, $redis_port, $error_reporting);
                     self::setHandler($handler);
                     break;
                 default:
