@@ -1,7 +1,5 @@
 <?php
 
-require __DIR__ . '/IHandler.php';
-
 class FileSystemHandler implements IHandler {
 
 	private $path;

@@ -1,7 +1,5 @@
 <?php
 
-require __DIR__ . '/IHandler.php';
-
 class RedisHandler implements IHandler {
 
 	private $redis;
