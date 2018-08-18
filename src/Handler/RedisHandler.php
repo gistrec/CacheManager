@@ -32,7 +32,7 @@ class RedisHandler implements IHandler {
 		$data = $this->redis->get($key);
 		if ($data != null) {
 			$data = $this->unserialize($data);
-			return $data
+			return $data;
 		}else {
 			return null;
 		}
