@@ -1,5 +1,6 @@
 <?php
 
+require __DIR__ . '/Handler/IHandler.php';
 require __DIR__. '/Handler/FileSystemHandler.php';
 require __DIR__. '/Handler/RedisHandler.php';
 

@@ -1,7 +1,5 @@
 <?php
 
-require __DIR__ . '/IHandler.php';
-
 class MemcachedHandler implements IHandler {
 
 	private $memcached;
