@@ -56,7 +56,7 @@ CacheManager::getInstance()->del($key);
 ```php
 <?php
 // Если нет get-параметра no_cache
-if (empty($_GET['no_cache']) {
+if (empty($_GET['no_cache'])) {
 	require_once './CacheManager/src/CacheManager.php';
 
 	// Получаем идентификатор страницы
